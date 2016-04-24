@@ -63,4 +63,9 @@ void composition() {
 
 /*
  * (Ver p1_a.c)
+ *
+ * Não percebo porque é que "_a == \at(_a, Here) * 2" funciona.
+ * Qual a diferença entre Pre, Old, Here, etc?
+ * Onde podem ser usados?
+ *
  */
