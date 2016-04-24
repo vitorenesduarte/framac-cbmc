@@ -1,8 +1,13 @@
 /*@
   @   predicate
-  @     belongs(int y, int* arr, int size) =
+  @     not_belongs(integer y, int* arr, integer size) =
   @       \forall integer k;
   @         0 <= k < size ==> arr[k] != y;
+  @
+  @   predicate
+  @     belongs(integer y, int* arr, integer size) =
+  @       !not_belongs(y, arr, size);
+  @
   @*/
 
 
@@ -12,7 +17,7 @@
   @     \valid(arr + (0..(size - 1)));
   @         
   @   ensures
-  @     \result == 0 <==> belongs(y, arr, size);
+  @     \result == 0 <==> not_belongs(y, arr, size);
   @
   @   assigns
   @     \nothing;
