@@ -1,20 +1,8 @@
-/*@
-  @   predicate
-  @     not_belongs(integer y, int* arr, integer size) =
-  @       \forall integer k;
-  @         0 <= k < size ==> arr[k] != y;
-  @
-  @   predicate
-  @     belongs(integer y, int* arr, integer size) =
-  @       !not_belongs(y, arr, size);
-  @
-  @*/
-
+#include "util.h"
 
 /*@
   @   requires
-  @     size >= 0 &&
-  @     \valid(arr + (0..(size - 1)));
+  @     valid_array(arr, size);
   @         
   @   ensures
   @     \result == 0 <==> not_belongs(y, arr, size);

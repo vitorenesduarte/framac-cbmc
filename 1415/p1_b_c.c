@@ -1,7 +1,8 @@
+#include "util.h"
+
 /*@
   @   requires
-  @     size >= 0 &&
-  @     \valid(arr + (0..(size - 1)));
+  @     valid_array(arr, size);
   @         
   @   ensures
   @     \result == 0 
