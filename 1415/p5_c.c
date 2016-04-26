@@ -31,4 +31,5 @@ void main() {
  * $ cbmc --signed-overflow-check -function main p5_c.c
  *
  * Como de esperado conseguimos ver o cbmc a gerar valores no array para os quais é possível ter overflow.
+ *
  */

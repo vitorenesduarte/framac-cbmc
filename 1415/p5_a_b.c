@@ -24,7 +24,8 @@ void main() {
  *
  * $ cbmc --signed-overflow-check -function sum p5.c 
  *
- * O comando acima não é suficiente para tentar perceber se ha problemas de overflow pois o cbmc vai tentar fazer unwinding para sempre.
+ * O comando acima não é suficiente para tentar perceber se 
+ * há problemas de overflow pois o cbmc vai tentar fazer unwinding para sempre.
  *
  * $ cbmc --signed-overflow-check -unwind 10 -function sum p5.c 
  *
@@ -33,7 +34,8 @@ void main() {
  *
  * B. cbmc --signed-overflow-check --bounds-check --pointer-check -function main p5.c 
  * 
- * Todos os acessos ao array são validos uma vez que estamos a percorrer as primeiras 12 posições e o array tem um tamanho de 15.
+ * Todos os acessos ao array são válidos uma vez que estamos a percorrer 
+ * as primeiras 12 posições e o array tem um tamanho de 15.
  * O somatório das primeiras 12 posições do array definido também não provoca overflow.
  *
  *
