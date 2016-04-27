@@ -63,7 +63,7 @@ void composition() {
  * B.
  * Se corrermos: 
  *
- * $ frama-c -wp -wp-rte p1_a.c
+ * $ frama-c -wp -wp-rte p1_a_b.c
  *
  * Vemos que há VCs que não são validadas.
  * Adicionando pré-condições que limitam a gama de valores das variáveis

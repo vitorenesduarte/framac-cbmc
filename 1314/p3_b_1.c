@@ -41,5 +41,10 @@ int main() {
  * E não importa o quão grande é o valor do slevel.
  *
  * Justificação?
- *
+ * - o frama-c não vai atribuir um valor concreto à variável "value", 
+ *   mas sim um intervalo. 
+ *   No fim ao calcular o valor do verif vai comparar dois intervalos,
+ *   o que dá falso (a não ser que o intervalo seja tão pequeno
+ *   que só tem um valor)
+ *   
  */

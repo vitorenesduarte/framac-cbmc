@@ -46,5 +46,6 @@ int main() {
  * já não vai conseguir determinar o valor de verif.
  *
  * Justificação?
+ * - a justifição é a mesma dada no p3_b_1.c
  *
  */

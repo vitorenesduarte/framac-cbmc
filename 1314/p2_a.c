@@ -1,13 +1,45 @@
+/*@
+  @   axiomatic Exponentation {
+  @     logic integer exp(integer b, integer e);
+  @
+  @     axiom exp0:
+  @       \forall integer b;
+  @         exp(b, 0) == 1;
+  @
+  @     axiom exp1:
+  @       \forall integer b;
+  @         exp(b, 1) == b;
+  @
+  @     axiom expn:
+  @       \forall integer b, integer e;
+  @         exp(b, e) == b * exp(b, e - 1);
+  @
+  @   }
+  @
+  @*/
+
+
 int i, j;
 int k, b, a;
-int _k, _b, _a;
+int ks, bs, as;
 
 /*@
   @    requires
-  @      k == _k && a == _a && b == _b;
+  @      k == ks && a == as && b == bs;
+  @
+  @    requires
+  @      k > 0 && a > 0 && b > 0 && j > 0 && i > 0;
+  @
+  @    requires j >= i;
   @
   @    ensures
-  @      k == _k && a == _a && b == _b;
+  @      k == ks;
+  @
+  @    ensures
+  @      a == as;
+  @    
+  @    ensures
+  @      b == bs;
   @
   @*/
 void composition() {
@@ -17,13 +49,16 @@ void composition() {
     @     k, b;
     @
     @   loop invariant
-    @     i <= k <= (j + 1) &&
+    @     i <= k;
+    @
+    @   loop invariant
+    @     k <= (j + 1);
+    @
+    @   loop invariant
     @     b == \at(b, Pre) + (k - i);
     @
-    @   loop variant
-    @     j - k;
-    @
     @*/
+  // j - k
   for(k = i; k <= j; k++)
     b++;
   /*@
@@ -31,41 +66,49 @@ void composition() {
     @     k, a;
     @
     @   loop invariant
-    @     i <= k <= (j + 1) &&
-    @     a == \at(a, Here) * 2;
-    @   
-    @   loop variant
-    @     j - k;
+    @     i <= k;
     @
+    @   loop invariant
+    @     k <= (j + 1);
+    @
+    @   loop invariant
+    @     a == \at(a, Pre) * exp(2, k - i);
+    @   
     @*/
+  // j - k  
   for(k = i; k <= j; k++)
     a *= 2;
 
 
   /*@
     @   loop assigns
-    @     _k, _b, _a;
+    @     ks, bs, as;
     @
     @   loop invariant
-    @     i <= _k <= (j + 1) &&
-    @     _b == \at(_b, Pre) + (_k - i) &&
-    @     _a == \at(_a, Here) * 2;
+    @     i <= ks;
     @
-    @   loop variant
-    @     j - _k;
+    @   loop invariant
+    @     k <= (j + 1);
+    @
+    @   loop invariant
+    @     bs == \at(bs, Pre) + (ks - i);
+    @
+    @   loop invariant
+    @     as == \at(as, Pre) * exp(2, (ks - i));
     @
     @*/
-  for(_k = i; _k <= j; _k++) {
-    _b++;
-    _a *= 2;
+  // j - ks
+  for(ks = i; ks <= j; ks++) {
+    bs++;
+    as *= 2;
   }
 }
 
 /*
- * (Ver p1_a.c)
+ * A.
+ * 
+ * $ frama-c -wp p2_a.c
  *
- * Não percebo porque é que "_a == \at(_a, Here) * 2" funciona.
- * Qual a diferença entre Pre, Old, Here, etc?
- * Onde podem ser usados?
+ * - Não prova a pós condição
  *
  */
