@@ -28,9 +28,7 @@ int ks, bs, as;
   @      k == ks && a == as && b == bs;
   @
   @    requires
-  @      k > 0 && a > 0 && b > 0 && j > 0 && i > 0;
-  @
-  @    requires j >= i;
+  @      j >= i;
   @
   @    ensures
   @      k == ks;
@@ -57,8 +55,10 @@ void composition() {
     @   loop invariant
     @     b == \at(b, Pre) + (k - i);
     @
+    @   loop variant
+    @     j - k;
+    @
     @*/
-  // j - k
   for(k = i; k <= j; k++)
     b++;
   /*@
@@ -74,8 +74,10 @@ void composition() {
     @   loop invariant
     @     a == \at(a, Pre) * exp(2, k - i);
     @   
+    @   loop variant
+    @     j - k;
+    @
     @*/
-  // j - k  
   for(k = i; k <= j; k++)
     a *= 2;
 
@@ -88,7 +90,7 @@ void composition() {
     @     i <= ks;
     @
     @   loop invariant
-    @     k <= (j + 1);
+    @     ks <= (j + 1);
     @
     @   loop invariant
     @     bs == \at(bs, Pre) + (ks - i);
@@ -96,8 +98,10 @@ void composition() {
     @   loop invariant
     @     as == \at(as, Pre) * exp(2, (ks - i));
     @
+    @   loop variant
+    @     j - ks;
+    @
     @*/
-  // j - ks
   for(ks = i; ks <= j; ks++) {
     bs++;
     as *= 2;
@@ -109,6 +113,6 @@ void composition() {
  * 
  * $ frama-c -wp p2_a.c
  *
- * - Não prova a pós condição
- *
+ * Mais uma vez precisamos da pré-condição
+ *     j >= i
  */
